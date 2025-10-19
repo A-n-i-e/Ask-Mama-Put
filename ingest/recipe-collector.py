@@ -10,7 +10,7 @@ import json, time, random, os
 
 
 # Load existing data 
-with open("data/recipes.json") as f:
+with open("../data/recipes.json") as f:
     data = json.load(f)
 
 # Setup Chrome for Selenium Scraping
@@ -70,7 +70,7 @@ def extract_recipe(url):
 
 
 # Prepare output file 
-output_file = "data/nigerian_recipes.json"
+output_file = "../data/nigerian_recipes.json"
 
 # if file already exists, continue appending categories
 if os.path.exists(output_file):
