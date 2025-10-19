@@ -2,7 +2,7 @@
 
 _A Nigerian Food Knowledge Assistant built with RAG_
 
-<p align="center"> <img src="images/banner.png" width="600"> </p>
+<p align="center"> <img src="images\ask mama logo.png" width="600"> </p>
 
 Food connects people — but sometimes you want to cook something new, understand traditional ingredients, or get proper instructions on how to make a local dish without flipping through dozens of websites.
 
@@ -41,7 +41,7 @@ Ask Mama Put is a **Retrieval-Augmented Generation (RAG)** system that helps use
 3. **Cooking Steps** – Get step-by-step instructions for specific dishes.  
 4. **Food Education** – Explore Nigerian culinary culture through conversation.  
 
-<p align="center"> <img src="images/ui.png" width="700"> </p>
+<p align="center"> <img src="images\ask mama demo.png" width="700"> </p>
 
 ---
 
@@ -52,10 +52,8 @@ The dataset consists of Nigerian recipes scraped from All Nigerian Recipes and o
 Each recipe record includes:
 
 * **Name:** e.g. “Egusi Soup”, “Fried Plantain”  
-* **Ingredients:** structured list of ingredients  
-* **Steps:** detailed cooking steps  
 * **Category:** soup, swallow, rice, snacks, etc.  
-* **Tips & Notes:** cultural context or preparation advice  
+* **Information:** recipes, direction, general information about dish
 * **Image URL:** scraped from the page  
 
 The dataset is stored in `recipes.json`, and the ingestion script automatically pushes it to **Qdrant** for vector search.
