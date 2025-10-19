@@ -227,7 +227,7 @@ Ask-Mama-Put/
 │
 ├── 📂 data/                        # Contains recipe datasets and scraped files
 │   ├── nigerian_recipes.json       # Curated Nigerian recipe dataset
-│   └── recipes.json                # Raw scraped recipe data
+│   └── recipes.json                # Raw scraped recipe data urls
 │
 ├── 📂 frontend/                    # React frontend (chat interface)
 │   ├── src/                        # React source code
@@ -239,23 +239,21 @@ Ask-Mama-Put/
 │   └── ask mama logo.png
 │
 ├── 📂 ingest/                      # Data ingestion & preprocessing scripts
-│   ├── recipe-collector.py         # Loads recipes and pushes to Qdrant
+│   ├── recipe-collector.py         # Loops through the links in recipes.json and gets full recipes
+│   ├── ingest.ipynb                # Jupyter notebook for data ingestion workflow
 │   └── scraper.py                  # Web scraper for recipe sites
-│
-├── 📂 qdrant_storage/              # Local Qdrant vector database files
 │
 ├── 📂 venv/                        # Virtual environment (ignored in Git)
 │
 ├── 📄 .env                         # Environment variables (API keys, etc.)
 ├── 📄 .gitignore                   # Git ignore rules
 │
-├── 🧠 ingest.ipynb                 # Jupyter notebook for data ingestion workflow
 ├── ⚙️ main.py                      # FastAPI backend entry point (API server)
 ├── 🤖 rag_pipeline.py              # Core RAG logic (retrieval + Gemini prompt)
 │
 ├── 🧾 README.md                    # Project documentation
 │
-└── 🪣 requirements.txt (optional)  # Python dependencies (if added)
+└── 🪣 requirements.txt         # Python dependencies (if added)
 
 ```
 
@@ -264,5 +262,6 @@ Ask-Mama-Put/
 ## 🎉 Acknowledgements
 
 Special thanks to **DataTalksClub** for the LLM Zoomcamp, and to all Nigerian food bloggers who make culinary heritage accessible online.
+It was by God's grace that I followed through with this project honestly and I'm glad I did.
 
 > “Mama Put no dey disappoint — if you ask am, she go teach you how to cook like pro!” 👩🏿‍🍳🇳🇬
