@@ -6,21 +6,20 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
-import json, time, random
+import json, time, random, os
 
 
-
-with open("recipes.json") as f:
+# Load existing data 
+with open("data/recipes.json") as f:
     data = json.load(f)
 
-# Setup Chrome
+# Setup Chrome for Selenium Scraping
 options = Options()
-# options.add_argument("--headless")  # comment this if you want to see the browser
+options.add_argument("--headless")  # comment this if you want to see the browser
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
 
 
 def extract_recipe(url):
@@ -28,7 +27,6 @@ def extract_recipe(url):
     try:
         driver.get(url)
 
-        # Wait up to 10s for the main content to appear
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "entry-content"))
         )
@@ -44,6 +42,8 @@ def extract_recipe(url):
         content = soup.find("div", class_="entry-content")
 
         info = []
+        image_url = None
+
         if content:
             image_tag = content.find("img")
             if image_tag and image_tag.get("src"):
@@ -57,43 +57,56 @@ def extract_recipe(url):
             print("Could not find entry-content section.")
             return None
 
-
-        return {"title": title, "image_url": image_url, "url": url, "information": "  ".join(info)}
+        return {
+            "title": title,
+            "image_url": image_url,
+            "url": url,
+            "information": "  ".join(info)
+        }
 
     except Exception as e:
         print(f"Error scraping {url}: {e}")
         return None
 
 
-detailed_data = []
-for category in data:
+# Prepare output file 
+output_file = "data/nigerian_recipes.json"
+
+# if file already exists, continue appending categories
+if os.path.exists(output_file):
+    with open(output_file) as f:
+        detailed_data = json.load(f)
+else:
+    detailed_data = []
+
+
+# Main scraping loop 
+for category in data[10:]:
+    print(f"\n-----Processing Category: {category['category']} -----")
     recipes_with_details = []
-    
 
     for recipe in category["recipes"]:
         print(f"\nScraping: {recipe['title']}")
-        details = extract_recipe(recipe['url'])
-        
+        details = extract_recipe(recipe["url"])
 
         if details:
-            details['category'] = category['category']
+            details["category"] = category["category"]
             recipes_with_details.append(details)
         else:
             print("Skipped due to error or block.")
 
-        time.sleep(random.uniform(1, 3))
+        time.sleep(random.uniform(2, 5))
 
-
+    # Save category to output file immediately after each category
     detailed_data.append({
         "recipes": recipes_with_details
     })
 
+    with open(output_file, "w") as f:
+        json.dump(detailed_data, f, indent=2)
 
-
-with open("nigerian_recipes.json", "w") as f:
-    json.dump(detailed_data, f, indent=2)
-
+    print(f" Saved category: {category['category']} to {output_file}\n")
 
 
 driver.quit()
-print("Done. All recipes saved.")
+print(" Done. All categories saved.")
