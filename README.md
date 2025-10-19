@@ -62,7 +62,22 @@ The dataset is stored in `recipes.json`, and the ingestion script automatically 
 
 ## ⚙️ RAG Flow
 
-<p align="center"> <img src="images/rag_flow.png" width="700"> </p>
+```
+  Frontend (React)
+          ↓
+  Backend API (FastAPI)
+          ↓
+  User Query → Embedding Generator
+          ↓
+  Similarity Search in Qdrant
+          ↓
+  Top Results → LLM (Gemini)
+          ↓
+  LLM combines context + query → Final Answer
+          ↓
+  Response sent back to Frontend
+
+```
 
 The Ask Mama Put pipeline uses both **vector retrieval** and **LLM generation**.
 
