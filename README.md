@@ -98,6 +98,45 @@ The Ask Mama Put pipeline uses both **vector retrieval** and **LLM generation**.
 
 ---
 
+## 📁 Repository Structure
+
+```
+Ask-Mama-Put/
+│
+├── 📂 data/                        # Contains recipe datasets and scraped files
+│   ├── nigerian_recipes.json       # Curated Nigerian recipe dataset
+│   └── recipes.json                # Raw scraped recipe data urls
+│
+├── 📂 frontend/                    # React frontend (chat interface)
+│   ├── src/                        # React source code
+│   ├── public/
+│   └── package.json
+│
+├── 📂 images/                      # Project images for docs/UI
+│   ├── ask mama demo.png
+│   └── ask mama logo.png
+│
+├── 📂 ingest/                      # Data ingestion & preprocessing scripts
+│   ├── recipe-collector.py         # Loops through the links in recipes.json and gets full recipes
+│   ├── ingest.ipynb                # Jupyter notebook for data ingestion workflow
+│   └── scraper.py                  # Web scraper for recipe sites
+│
+├── 📂 venv/                        # Virtual environment (ignored in Git)
+│
+├── 📄 .env                         # Environment variables (API keys, etc.)
+├── 📄 .gitignore                   # Git ignore rules
+│
+├── ⚙️ main.py                      # FastAPI backend entry point (API server)
+├── 🤖 rag_pipeline.py              # Core RAG logic (retrieval + Gemini prompt)
+│
+├── 🧾 README.md                    # Project documentation
+│
+└── 🪣 requirements.txt         # Python dependencies (if added)
+
+```
+
+---
+
 ## 🧪 Retrieval Evaluation
 
 Two retrieval methods were evaluated:
@@ -232,45 +271,6 @@ All dependencies and environment details are version-pinned in `requirements.txt
 * Potential integrations:
   * WhatsApp bot interface  
   * User profile and favorites tracking  
-
----
-
-## 📁 Repository Structure
-
-```
-Ask-Mama-Put/
-│
-├── 📂 data/                        # Contains recipe datasets and scraped files
-│   ├── nigerian_recipes.json       # Curated Nigerian recipe dataset
-│   └── recipes.json                # Raw scraped recipe data urls
-│
-├── 📂 frontend/                    # React frontend (chat interface)
-│   ├── src/                        # React source code
-│   ├── public/
-│   └── package.json
-│
-├── 📂 images/                      # Project images for docs/UI
-│   ├── ask mama demo.png
-│   └── ask mama logo.png
-│
-├── 📂 ingest/                      # Data ingestion & preprocessing scripts
-│   ├── recipe-collector.py         # Loops through the links in recipes.json and gets full recipes
-│   ├── ingest.ipynb                # Jupyter notebook for data ingestion workflow
-│   └── scraper.py                  # Web scraper for recipe sites
-│
-├── 📂 venv/                        # Virtual environment (ignored in Git)
-│
-├── 📄 .env                         # Environment variables (API keys, etc.)
-├── 📄 .gitignore                   # Git ignore rules
-│
-├── ⚙️ main.py                      # FastAPI backend entry point (API server)
-├── 🤖 rag_pipeline.py              # Core RAG logic (retrieval + Gemini prompt)
-│
-├── 🧾 README.md                    # Project documentation
-│
-└── 🪣 requirements.txt         # Python dependencies (if added)
-
-```
 
 ---
 
