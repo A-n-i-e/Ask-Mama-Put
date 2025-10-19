@@ -75,7 +75,7 @@ The Ask Mama Put pipeline uses both **vector retrieval** and **LLM generation**.
 
 * Qdrant (Vector Database)  
 * Gemini API (LLM)  
-* Flask (Backend)  
+* FastAPI (Backend)  
 * React (Frontend)  
 * Python (Scraping, Ingestion)  
 * BeautifulSoup + Selenium (Web scraping)  
@@ -103,13 +103,13 @@ Two prompt styles were tested:
 1. **Direct retrieval-to-answer**  
 2. **Contextual conversational prompt** (“You are Mama Put, a friendly Nigerian cook...”)  
 
-The second approach produced **more culturally appropriate** and user-friendly responses, earning higher user feedback scores (average 4.6/5 vs. 3.9/5).
+The second approach produced **more culturally appropriate** and user-friendly responses, earning higher user feedback scores 
 
 ---
 
 ## 💻 Interface
 
-Ask Mama Put features a **Flask backend API** and a **React web frontend**:
+Ask Mama Put features a **FastAPI backend** and a **React web frontend**:
 
 * **Frontend:**
   * Built with React + Tailwind CSS.  
@@ -117,7 +117,7 @@ Ask Mama Put features a **Flask backend API** and a **React web frontend**:
   * Background image and “Ask Mama Put 👩🏿‍🍳” branding.  
 
 * **Backend:**
-  * Flask handles routes `/ask` and `/feedback`.  
+  * FastAPI handles routes `/ask`.  
   * Communicates with Qdrant for retrieval and Gemini for responses.  
   * Logs user queries and system performance for monitoring.  
 
@@ -138,7 +138,7 @@ python app.py
 The ingestion process is **automated** with a Python script:
 
 1. Scrape recipe categories iteratively using Selenium.  
-2. Save each recipe’s details to `recipes.json`.  
+2. Save each recipe’s details to `nigerian_recipes.json`.  
 3. After every category, the JSON file updates **without losing structure**.  
 4. Automatically load all new entries into Qdrant using embeddings.  
 
@@ -223,26 +223,40 @@ All dependencies and environment details are version-pinned in `requirements.txt
 ## 📁 Repository Structure
 
 ```
-ask-mama-put/
+Ask-Mama-Put/
 │
-├── backend/
-│   ├── app.py
-│   ├── rag_pipeline.py
-│   ├── ingest.py
-│   └── requirements.txt
+├── 📂 data/                        # Contains recipe datasets and scraped files
+│   ├── nigerian_recipes.json       # Curated Nigerian recipe dataset
+│   └── recipes.json                # Raw scraped recipe data
 │
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   └── App.jsx
-│   └── public/
+├── 📂 frontend/                    # React frontend (chat interface)
+│   ├── src/                        # React source code
+│   ├── public/
+│   └── package.json
 │
-├── data/
-│   └── recipes.json
+├── 📂 images/                      # Project images for docs/UI
+│   ├── ask mama demo.png
+│   └── ask mama logo.png
 │
-├── docker-compose.yml
-├── Dockerfile
-└── README.md
+├── 📂 ingest/                      # Data ingestion & preprocessing scripts
+│   ├── recipe-collector.py         # Loads recipes and pushes to Qdrant
+│   └── scraper.py                  # Web scraper for recipe sites
+│
+├── 📂 qdrant_storage/              # Local Qdrant vector database files
+│
+├── 📂 venv/                        # Virtual environment (ignored in Git)
+│
+├── 📄 .env                         # Environment variables (API keys, etc.)
+├── 📄 .gitignore                   # Git ignore rules
+│
+├── 🧠 ingest.ipynb                 # Jupyter notebook for data ingestion workflow
+├── ⚙️ main.py                      # FastAPI backend entry point (API server)
+├── 🤖 rag_pipeline.py              # Core RAG logic (retrieval + Gemini prompt)
+│
+├── 🧾 README.md                    # Project documentation
+│
+└── 🪣 requirements.txt (optional)  # Python dependencies (if added)
+
 ```
 
 ---
