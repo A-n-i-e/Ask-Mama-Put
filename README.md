@@ -47,7 +47,7 @@ Ask Mama Put is a **Retrieval-Augmented Generation (RAG)** system that helps use
 
 ## 📚 Dataset
 
-The dataset consists of Nigerian recipes scraped from All Nigerian Recipes and other sources.
+The dataset consists of Nigerian recipes scraped from [All Nigerian Recipes](https://www.allnigerianrecipes.com/other/sitemap/) and other sources.
 
 Each recipe record includes:
 
