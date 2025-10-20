@@ -65,7 +65,7 @@ dist/
 build/
 venv/
 env/
-.venv/
+.venv
 qdrant_storage/
 
 # Java / Maven / Gradle

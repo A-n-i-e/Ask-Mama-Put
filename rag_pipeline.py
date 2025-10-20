@@ -97,6 +97,7 @@ def build_prompt(query, search_results):
     - Make your answer clear, structured, and friendly — like you’re teaching your younger cousin to cook.
 
     """.strip()
+    
     return prompt_2
 
 
