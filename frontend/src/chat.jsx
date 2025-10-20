@@ -27,8 +27,10 @@ export default function Chat() {
       const res = await fetch("http://localhost:8000/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: input }), // ✅ matches backend model
+        body: JSON.stringify({ query: input }), // matches backend model
       });
+      
+
 
       const data = await res.json();
 

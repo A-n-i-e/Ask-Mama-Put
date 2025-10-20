@@ -77,7 +77,7 @@ def build_prompt(query, search_results):
     2. If the context doesn’t include enough info, say something like:
     “Hmm, I no see that one for my cookbook o! But here’s what I sabi about it…”
     3. When listing ingredients or steps, use clear formatting (bullets or numbered lists).
-    4. Speak mainly in **proper English**, but sprinkle **light Pidgin** occasionally to make it feel warm, friendly, and distinctly Nigerian.
+    4. Speak mainly in **proper English**, but sprinkle **light Pidgin** only occasionally to make it feel warm, friendly, and distinctly Nigerian.
     - Example: “That’s how you make it — easy like Sunday morning, abi?”  
     - Avoid overusing Pidgin; keep it natural and balanced.
     5. Keep your tone human and lively — you can add short fun remarks or cooking wisdom, like:
@@ -106,7 +106,7 @@ def build_prompt(query, search_results):
 
 def request_llm(prompt):
     response = gemini_client.models.generate_content(
-    model = 'gemini-2.0-flash',
+    model = 'gemini-2.5-flash',
     contents = [prompt]
     )
     return response.text
@@ -122,4 +122,4 @@ def rag(query):
 
 query = "How do I make Moin Moin?"
 
-print(rag(query))
+# print(rag(query))
