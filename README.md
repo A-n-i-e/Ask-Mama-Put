@@ -144,7 +144,7 @@ Two retrieval methods were evaluated:
 1. **Pure vector similarity search**  
 2. **Hybrid search (text + vector combination)**  
 
-Hybrid search yielded **better grounding** and reduced hallucination rates by approximately **12%**, especially for long or vague queries (e.g. “What can I make with ripe plantain and pepper?”).
+Hybrid search yielded **better grounding** and reduced hallucination rates, especially for long or vague queries (e.g. “What can I make with ripe plantain and pepper?”).
 
 Future versions will include **document re-ranking** for even more precise results.
 
@@ -175,15 +175,30 @@ Ask Mama Put features a **FastAPI backend** and a **React web frontend**:
   * Communicates with Qdrant for retrieval and Gemini for responses.  
   * Logs user queries and system performance for monitoring.  
 
-Run locally:
-```bash
-docker-compose up
-```
 
-Or run the Flask app directly:
-```bash
-python app.py
+## Reproducibility and Setup
+
+Prerequisites:
+ * Python 3.12+
+ * Docker Desktop with Docker Compose
+ * A Gemini API key in .env file at project root
+
+ ```
+   GEMINI_API_KEY = your_api_key_here
+ ```
+
+**1. Clone the repository**
 ```
+git clone https://github.com/A-n-i-e/Ask-Mama-Put.git
+cd Ask-Mama-Put
+``` 
+**2. Set up environmental variables**
+
+
+# Usage
+*Frontend → http://localhost:5173
+*Backend → http://localhost:8000
+*Qdrant → http://localhost:6333/dashboard
 
 ---
 
