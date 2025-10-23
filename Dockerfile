@@ -7,8 +7,15 @@ WORKDIR /app
 # Copy dependency list
 COPY requirements.txt .
 
+# Create and activate virtual environment
+RUN python -m venv .venv
+RUN .venv/bin/activate
+
+# Upgrade pip
+RUN pip install --upgrade pip
+
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.
 
 # Copy the rest of the backend code
 COPY . .

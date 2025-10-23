@@ -176,29 +176,88 @@ Ask Mama Put features a **FastAPI backend** and a **React web frontend**:
   * Logs user queries and system performance for monitoring.  
 
 
-## Reproducibility and Setup
+## ⚙️ Reproducibility and Setup
 
-Prerequisites:
- * Python 3.12+
- * Docker Desktop with Docker Compose
- * A Gemini API key in .env file at project root
+### 🧩 Prerequisites
+* Python 3.12+
+* Docker Desktop with Docker Compose
+* A Gemini API key stored in a `.env` file at the project root
 
- ```
-   GEMINI_API_KEY = your_api_key_here
- ```
+Example `.env` file:
+GEMINI_API_KEY=your_api_key_here
 
-**1. Clone the repository**
-```
+---
+
+### 🪄 1. Clone the Repository
 git clone https://github.com/A-n-i-e/Ask-Mama-Put.git
 cd Ask-Mama-Put
-``` 
-**2. Set up environmental variables**
 
+---
 
-# Usage
-*Frontend → http://localhost:5173
-*Backend → http://localhost:8000
-*Qdrant → http://localhost:6333/dashboard
+### ⚙️ 2. Set Up Environment Variables
+Create a `.env` file at the root of the project with your Gemini API key:
+touch .env
+Then open it and add:
+GEMINI_API_KEY=your_api_key_here
+
+---
+
+### 🐍 3. (Optional) Run Locally Without Docker
+If you want to test the backend without containers:
+```
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+cd frontend
+npm run dev
+```
+Then open the browser at:
+http://localhost:8000
+
+---
+
+### 🐳 4. Run with Docker Compose
+Ensure Docker Desktop is running, then execute:
+`docker compose up`
+
+This will:
+- Start the **backend** (FastAPI)
+- Launch the **frontend** (React + Vite)
+- Spin up **Qdrant** (Vector Database)
+
+Once it’s done building, you can access the services via:
+
+| Service   | URL |
+|------------|-----|
+| 🧠 Backend (FastAPI) | http://localhost:8000 |
+| 🖥️ Frontend (React/Vite) | http://localhost:5173 |
+| 📊 Qdrant Dashboard | http://localhost:6333/dashboard |
+
+---
+
+### 🧼 5. Stop and Remove Containers
+When finished:
+docker compose down
+
+To also remove volumes:
+docker compose down -v
+
+---
+
+### 🧰 Troubleshooting
+If Docker fails to pull images or times out:
+- Check your internet connection  
+- Try restarting Docker Desktop  
+- Run:  
+  docker login  
+  docker pull hello-world  
+- If that doesn’t work, check your DNS or proxy settings (you can switch to Google DNS `8.8.8.8`).
+
+---
+
+✅ **You’re all set!**  
+Run the stack and start chatting with **Mama Put 👩🏿‍🍳** about Nigerian recipes!
+
 
 ---
 
